@@ -4,7 +4,7 @@ import ElementUI from 'element-ui'
 import router from './router/index'
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/style/style.css';
-
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -17,5 +17,6 @@ Object.keys(filters).forEach(key => {
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

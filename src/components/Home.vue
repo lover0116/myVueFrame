@@ -1,14 +1,26 @@
 <template>
   <div class="hello">
     <h1>welcome</h1>
+    <div>{{count}}</div>
+    <div>{{nameA}}</div>
+    <el-button @click="upCount">Click me</el-button>
   </div>
 </template>
 
 <script>
+  //import { test } from '@/api/index'
+  import {mapState, mapGetters, mapActions} from 'vuex'
+
   export default {
     name: 'Home',
-    mounted () {
-      console.log(document.cookie);
+    computed: {
+      ...mapState({
+        count: (state) => state.xz.count
+      }),
+      ...mapGetters(['nameA'])
+    },
+    methods: {
+      ...mapActions(['upCount'])
     }
   }
 </script>
