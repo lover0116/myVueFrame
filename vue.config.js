@@ -10,5 +10,14 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  /*configureWebpack: config => {
+    if (process.env.NODE_ENV === "production") {
+      config.externals = { // 不会被打包的库
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'element-ui': 'ELEMENT'
+      }
+    }
+  }*/
 }
