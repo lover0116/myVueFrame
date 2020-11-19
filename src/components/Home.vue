@@ -2,8 +2,13 @@
   <div class="hello">
     <h1>welcome</h1>
     <div>{{count}}</div>
+    <el-button @click="upCount">++++++</el-button>
+    <br />
+    -----
+    <br />
+    <div>{{list}}</div>
+    --过滤b--<br />
     <div>{{nameA}}</div>
-    <el-button @click="upCount">Click me</el-button>
   </div>
 </template>
 
@@ -15,7 +20,8 @@
     name: 'Home',
     computed: {
       ...mapState({
-        count: (state) => state.xz.count
+        count: state => state.xz.count,
+        list: state=> state.xz.list
       }),
       ...mapGetters(['nameA'])
     },
