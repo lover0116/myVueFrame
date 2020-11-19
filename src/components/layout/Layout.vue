@@ -1,6 +1,9 @@
 <template>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-aside width="200px">
+      <div><router-link :to="{ 'path': '/', query: {}}">welcome</router-link></div>
+      <div><router-link :to="{ 'path': '/dialog', query: {}}">dialog</router-link></div>
+    </el-aside>
     <el-container>
       <el-header>Header</el-header>
       <el-main>
