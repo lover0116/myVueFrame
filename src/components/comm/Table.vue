@@ -1,36 +1,36 @@
 <template>
-<div>
-  <slot></slot>
-  <el-pagination
-    background
-    @current-change="handleCurrentChange"
-    @size-change="handleSizeChange"
-    :current-page="pageindex||1"
-    :page-sizes="[10, 20, 30, 40, 50]"
-    :page-size="pagesize||10"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="total||1"
-    style="margin-top: 22px;text-align: center"
+  <div>
+    <slot></slot>
+    <el-pagination
+      background
+      @current-change="handleCurrentChange"
+      @size-change="handleSizeChange"
+      :current-page="currpage||1"
+      :page-sizes="[10, 20, 50]"
+      :page-size="pagesize||10"
+      layout="total, prev, pager, next, sizes"
+      :total="total||10"
+      style="margin-top: 22px;"
     >
-  </el-pagination>
-</div>
+    </el-pagination>
+  </div>
 </template>
 
 <script>
   export default {
     name: "Table",
-    props: ['pageCallback', 'total', 'pagesize', 'pageindex'],
+    props: ['callback', 'total', 'currpage', 'pagesize'],
     methods: {
       handleCurrentChange (d) {
-        //console.log(d);
-        this.$props.pageCallback({
-          currPage: d
+        this.$props.callback&&this.$props.callback({
+          currPage: d,
+          pageSize: this.pagesize
         })
       },
       handleSizeChange (d) {
-        //console.log(d);
-        this.$props.pageCallback({
-          pageSize: d,
+        this.$props.callback&&this.$props.callback({
+          currPage: this.currpage,
+          pageSize: d
         })
       },
     },
