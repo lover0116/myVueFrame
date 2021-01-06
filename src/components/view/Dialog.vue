@@ -14,8 +14,8 @@
 
 <script>
   import DialogForm from "./DialogForm";
-  import Table from "../comm/Table";
-  import Search from "../comm/Search";
+  import Table from "../Comm/Table";
+  import Search from "../Comm/Search";
   import mixins from '../../mixins/index'
   export default {
     name: "Dialog",

@@ -1,19 +1,19 @@
 <template>
-  <div>
-    <slot></slot>
-    <el-pagination
-      background
-      @current-change="handleCurrentChange"
-      @size-change="handleSizeChange"
-      :current-page="currpage||1"
-      :page-sizes="[10, 20, 50]"
-      :page-size="pagesize||10"
-      layout="total, prev, pager, next, sizes"
-      :total="total||10"
-      style="margin-top: 22px;"
+<div>
+  <slot></slot>
+  <el-pagination
+    background
+    @current-change="handleCurrentChange"
+    @size-change="handleSizeChange"
+    :current-page="currpage||1"
+    :page-sizes="[10, 20, 50]"
+    :page-size="pagesize||10"
+    layout="total, prev, pager, next, sizes"
+    :total="total"
+    style="margin-top: 22px;"
     >
-    </el-pagination>
-  </div>
+  </el-pagination>
+</div>
 </template>
 
 <script>
