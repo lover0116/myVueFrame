@@ -2,34 +2,30 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router);
 
-const Layout = () => import(/* webpackChunkName: "group-foo" */ '../components/layout/Layout')
-const Welcome = () => import(/* webpackChunkName: "group-foo" */ '../components/Home')
-const Dialog = () => import(/* webpackChunkName: "group-foo" */ '../components/view/Dialog')
+const Layout = () => import(/* webpackChunkName: "view" */ '../components/Layout/Layout')
+const Welcome = () => import(/* webpackChunkName: "view" */ '../components/Welcome')
+//Temp
+const Temp = () => import(/* webpackChunkName: "view" */ '../views/Temp/Template')
 
 let routers = [
   {
-    path: '',
-    name: 'Home',
-    redirect: '/welcome',
-    component: Layout,
-    children: [
-      {
-        path: 'welcome',
-        name: 'Welcome',
-        component: Welcome
-      }
-    ]
-  },
-  {
     path: '/',
-    name: 'dialog',
+    name: 'Home',
+    redirect: '/Welcome',
     component: Layout,
     children: [
       {
-        path: 'dialog',
-        name: 'Dialog',
-        component: Dialog
-      }
+        path: 'Welcome',
+        name: 'Welcome',
+        component: Welcome,
+        meta: { title: "Welcome" },
+      },
+      {
+        path: 'Temp',
+        name: 'Temp',
+        component: Temp,
+        meta: { title: "Temp" },
+      },
     ]
   }
 ];

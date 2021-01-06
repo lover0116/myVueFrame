@@ -1,8 +1,8 @@
 <template>
-  <el-dialog :width="width?width:'50%'" :visible.sync="dialogVisible" :title="title" @close="resetForm">
+  <el-dialog :visible.sync="dialogVisible" :title="title" @close="resetForm">
     <slot></slot>
     <div slot="footer" class="dialog-footer x-tc">
-      <el-button type="primary" @click="confirm" :loading="loading">确 定</el-button>
+      <el-button v-if="editable" type="primary" @click="confirm" :loading="loading">确 定</el-button>
       <el-button @click="closeDialog">取 消</el-button>
     </div>
   </el-dialog>
@@ -12,7 +12,16 @@
   export default {
     name: "DialogRefuse",
     emit: ['confirm', 'resetForm'],
-    props: ["title", "width"],
+    props: {
+      title: {
+        type: String,
+        default: "提示"
+      },
+      editable: {
+        type: Boolean,
+        default: true
+      }
+    },
     data(){
       return {
         dialogVisible: false,

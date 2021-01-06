@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
-const baseUrl = window.ContextPath === undefined ? "https://weixin.billjc.com/ems" : window.ContextPath;
+const baseUrl = window.ContextPath === undefined ? "https://weixin.billjc.com" : window.ContextPath;
 axios.interceptors.request.use(config=> {
   config.baseURL = baseUrl;
   config.withCredentials = true;

@@ -1,8 +1,14 @@
 import $axios from '@/axios/index'
 
-export const test = ()=>{
-  return $axios.get('/xxx/app/mock/17/hroa-sit/api-service/hroa/hireresourceteam/list')
+export const apiGetMenuTree = ()=>{
+  return $axios.get('/menu/tree')
 }
-
+//
+export const apiGetSysDynamic = (params)=>{
+  return $axios.get('/rest/SysDynamicField/list', {params});
+}
+export const apiPostSysDynamic = (params, type="post")=>{
+  return $axios[type]('/rest/SysDynamicField', params);
+}
 
 

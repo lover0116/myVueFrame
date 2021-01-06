@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="x-mt10">
   <slot></slot>
   <el-pagination
     background

@@ -6,15 +6,7 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
-
-  }
+  name: 'App'
 }
 </script>
 
-<style>
-#app {
-
-}
-</style>

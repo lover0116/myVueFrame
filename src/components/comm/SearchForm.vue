@@ -53,8 +53,8 @@
 </template>
 
 <script>
-  import Cascader from ".//Cascader"
-  import SelectLazy from ".//SelectLazy"
+  import Cascader from "./Cascader"
+  import SelectLazy from "./SelectLazy"
   import _ from "lodash"
   export default {
     name: "Search",
