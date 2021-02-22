@@ -1,14 +1,11 @@
 import $axios from '@/axios/index'
 
-export const apiGetMenuTree = ()=>{
-  return $axios.get('/menu/tree')
+
+export const apiGetSysRole = (params)=>{
+  return $axios.get('/rest/SysRole/list', {params});
 }
-//
-export const apiGetSysDynamic = (params)=>{
-  return $axios.get('/rest/SysDynamicField/list', {params});
-}
-export const apiPostSysDynamic = (params, type="post")=>{
-  return $axios[type]('/rest/SysDynamicField', params);
+export const apiPostSysRole = (params, type="post")=>{
+  return $axios[type]('/rest/SysRole', params);
 }
 
 

@@ -7,7 +7,7 @@
     <table-page :total="total" :callback="getTableData" :currpage="currPage" :pagesize="pageSize">
       <el-table :data="tableData" border>
         <el-table-column type="index" label="序号" width="60" align="center"></el-table-column>
-        <el-table-column prop="entityName" label="名称"></el-table-column>
+        <el-table-column prop="name" label="名称"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <span class="x-funbtn" @click="viewClick(scope.row)">查看</span>
@@ -19,9 +19,9 @@
     </table-page>
     <dialog-form ref="dialogForm" :title="title" @confirm="save" @resetForm="resetForm" :editable="editable">
       <el-form ref="form" :model="form" label-width="140px" :rules="rules">
-        <el-form-item label="字段" prop="field">
-          <el-input v-if="editable" v-model="form.field" placeholder="请输入字段"></el-input>
-          <span v-else>{{editData.field}}</span>
+        <el-form-item label="字段" prop="name">
+          <el-input v-if="editable" v-model="form.name" placeholder="请输入字段"></el-input>
+          <span v-else>{{editData.name}}</span>
         </el-form-item>
       </el-form>
     </dialog-form>
@@ -30,11 +30,11 @@
 </template>
 
 <script>
-  import TablePage from "@/components/comm/TablePage"
-  import SearchForm from "@/components/comm/SearchForm"
-  import DialogForm from "@/components/comm/DialogForm"
-  import mixins from "@/mixins"
-  import {apiGetSysDynamic, apiPostSysDynamic} from "@/api"
+  import TablePage from "../../components/comm/TablePage"
+  import SearchForm from "../../components/comm/SearchForm"
+  import DialogForm from "../../components/comm/DialogForm"
+  import mixins from "../../mixins"
+  import {apiGetSysRole, apiPostSysRole} from "../../api"
   import _ from "lodash"
   export default {
     components: {
@@ -45,22 +45,21 @@
     mixins: [mixins],
     data() {
       return {
-        apiPost: apiPostSysDynamic,
-        apiGet: apiGetSysDynamic,
+        apiPost: apiPostSysRole,
+        apiGet: apiGetSysRole,
         searchData: [
-          {id: 'entityName', name: '实体名称', type: 'select', data: []},
+          {id: 'name', name: '名称'},
         ],
-        loading: false,
         editData: {},
         title: '新增',
         editable: true,
         visible: false,
         form: {
           id: '',
-          field: ''
+          name: ''
         },
         rules: {
-          ['field']: [
+          ['name']: [
             { required: true, message: '输入', trigger: 'blur' }
           ],
         }
@@ -79,12 +78,6 @@
       closeDialog(){
         this.$refs.dialogForm.closeDialog();
       },
-      openLoading(){
-        this.$refs.dialogForm.openLoading();
-      },
-      closeLoading(){
-        this.$refs.dialogForm.closeLoading();
-      },
       addbtn(){
         this.title = "新增";
         this.editable = true;
@@ -97,7 +90,7 @@
         this.apiPost({
           params: { id: rows.id }
         }, "get").then(res=>{
-          this.editData = res.data.result[0];
+          this.editData = res.result[0];
         })
       },
       editClick(rows) {
@@ -107,7 +100,7 @@
         this.apiPost({
           params: { id: rows.id }
         }, "get").then(res=>{
-          let data = res.data.result[0];
+          let data = res.result[0];
           let formdata = {};
           _.each(this.form, (value, key)=>{
             formdata[key] = data[key];
@@ -126,7 +119,6 @@
       save() {
         this.$refs["form"].validate((valid) => {
           if (valid) {
-            this.openLoading();
             let params = {
               ...this.form
             };
@@ -138,9 +130,7 @@
               _promise = this.apiPost(params, "put");
             }
             _promise.then(res=>{
-              this.$message.info(res.data.message);
-              this.closeLoading();
-              if(res.data.success){
+              if(res.success){
                 this.closeDialog();
                 this.refreshTable();
               }

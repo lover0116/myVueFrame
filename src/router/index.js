@@ -5,7 +5,7 @@ Vue.use(Router);
 const Layout = () => import(/* webpackChunkName: "view" */ '../components/Layout/Layout')
 const Welcome = () => import(/* webpackChunkName: "view" */ '../components/Welcome')
 //Temp 增删改模板页
-const Temp = () => import(/* webpackChunkName: "view" */ '../views/Temp/Template')
+const Temp = () => import(/* webpackChunkName: "view" */ '../views/Temp/XTemplate')
 
 let routers = [
   {

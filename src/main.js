@@ -15,7 +15,14 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
-
+Vue.prototype.back = () => router.back(-1);
+Vue.directive("back", {
+  bind: (el)=>{
+    el.addEventListener("click", ()=>{
+      window.history.back();
+    })
+  }
+})
 new Vue({
   router,
   store,

@@ -49,8 +49,8 @@ export default {
           if(!res||res.name === "Error"){
             return ;
           }
-          this.tableData = res.data.result;
-          this.total = res.data.size;
+          this.tableData = res.result;
+          this.total = res.size;
         });
     },
     del(id, func){
@@ -63,8 +63,7 @@ export default {
         func({
           data: [id]
         }, "delete").then((res)=>{
-          this.$message.info(res.data.message);
-          if(res.data.success){
+          if(res.success){
             this.getTableData({}, this.callback);
           }
         })

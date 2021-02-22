@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import xz from './modules/xz';
+import base from './modules/base';
 
 Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
-    xz
+    base
   },
   state: {
     aa: 2

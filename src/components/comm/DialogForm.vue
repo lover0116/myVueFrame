@@ -25,12 +25,15 @@
     data(){
       return {
         dialogVisible: false,
-        loading: false
+      }
+    },
+    computed: {
+      loading(){
+        return this.$store.state.base.btnLoading;
       }
     },
     methods: {
       closeDialog(){
-        this.loading = false;
         this.dialogVisible = false;
       },
       openDialog(){
@@ -41,12 +44,6 @@
       },
       resetForm(){
         this.$emit("resetForm")
-      },
-      closeLoading(){
-        this.loading = false;
-      },
-      openLoading(){
-        this.loading = true;
       },
     }
   }
