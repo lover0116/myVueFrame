@@ -8,6 +8,7 @@
       <el-table :data="tableData" border>
         <el-table-column type="index" label="序号" width="60" align="center"></el-table-column>
         <el-table-column prop="name" label="名称"></el-table-column>
+        <el-table-column prop="no" label="编号"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <span class="x-funbtn" @click="viewClick(scope.row)">查看</span>
@@ -34,7 +35,7 @@
   import SearchForm from "../../components/comm/SearchForm"
   import DialogForm from "../../components/comm/DialogForm"
   import mixins from "../../mixins"
-  import {apiGetSysRole, apiPostSysRole} from "../../api"
+  import {apiGetExample, apiPostExample} from '../../api/MockData'
   import _ from "lodash"
   export default {
     components: {
@@ -45,8 +46,8 @@
     mixins: [mixins],
     data() {
       return {
-        apiPost: apiPostSysRole,
-        apiGet: apiGetSysRole,
+        apiPost: apiPostExample,
+        apiGet: apiGetExample,
         searchData: [
           {id: 'name', name: '名称'},
         ],
@@ -65,13 +66,7 @@
         }
       }
     },
-    created() {
-      this.refreshTable();
-    },
     methods: {
-      refreshTable(){
-        this.getTableData({}, this.apiGet);
-      },
       openDialog(){
         this.$refs.dialogForm.openDialog();
       },
@@ -132,7 +127,7 @@
             _promise.then(res=>{
               if(res.success){
                 this.closeDialog();
-                this.refreshTable();
+                this.getTableData();
               }
             })
           } else {

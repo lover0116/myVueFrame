@@ -8,7 +8,8 @@ import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(ELEMENT)
-
+/*引入mock*/
+import './mock'
 /*引入过滤器*/
 import * as filters from './filters/index'
 Object.keys(filters).forEach(key => {

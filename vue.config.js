@@ -15,10 +15,10 @@ const cdn = {
 };
 module.exports = {
   publicPath: './',
-  devServer: {
+  /*devServer: {
     //https: true,
     proxy: {
-      '/*': {
+      '/!*': {
         //target: 'http://10.100.201.17:31733/',
         target: 'https://weixin.billjc.com/',
         secure: true,
@@ -32,7 +32,7 @@ module.exports = {
         }
       }
     }
-  },
+  },*/
   chainWebpack: (config) => {
     if (isProduction) {
       config.plugin('html').tap((args) => {

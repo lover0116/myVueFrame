@@ -10,6 +10,9 @@ export default {
       searchParams: null
     }
   },
+  mounted(){
+    this.getTableData();
+  },
   methods: {
     searchFun (params={}){
       params.pageSize = this.pageSize;
@@ -28,7 +31,11 @@ export default {
         currPage: 1
       }, this.callback, fixParams);
     },
-    getTableData (params, Axios, fixParams) {
+    getTableData (
+      params={},
+      Axios=this.apiGet,
+      fixParams={}
+      ) {
       this.pageSize = params.pageSize||this.pageSize;
       this.currPage = params.currPage||this.currPage;
       if(!this.callback){

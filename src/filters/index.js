@@ -3,7 +3,7 @@
 export const formatDate = (value, type) => {
   if(value==null){ return ''; }
   let dates = new Date(value);
-  dates.setHours(dates.getHours()+8);
+  //dates.setHours(dates.getHours()+8);
   let year = dates.getFullYear();
   let month = (dates.getMonth()+1);
   if(month<10) month = '0' + month;
